@@ -1,6 +1,7 @@
 package source.kotlin.code.fake
 
-import source.kotlin.code.Message
+import source.kotlin.code.practice.Message
+
 
 class SampleData {
     companion object {

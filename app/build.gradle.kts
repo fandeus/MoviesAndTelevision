@@ -44,6 +44,11 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = "1.3.2"
     }
+    packagingOptions {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
+    }
 
     fun Packaging.() {
         resources {
@@ -53,7 +58,6 @@ android {
 }
 
 dependencies {
-
     implementation(libs.core.ktx)
     implementation(libs.lifecycle.runtime.ktx)
     implementation(libs.activity.compose)
@@ -62,11 +66,15 @@ dependencies {
     implementation(libs.ui.graphics)
     implementation(libs.ui.tooling.preview)
     implementation(libs.material3)
+    implementation(platform(libs.compose.bom))
+    implementation(platform(libs.compose.bom))
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
     androidTestImplementation(platform(libs.compose.bom))
     androidTestImplementation(libs.ui.test.junit4)
+    androidTestImplementation(platform(libs.compose.bom))
+    androidTestImplementation(platform(libs.compose.bom))
     debugImplementation(libs.ui.tooling)
     debugImplementation(libs.ui.test.manifest)
 }
