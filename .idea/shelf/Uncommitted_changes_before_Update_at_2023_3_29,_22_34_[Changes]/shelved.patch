@@ -1,0 +1,204 @@
+Index: app/src/main/java/source/kotlin/code/MainActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package source.kotlin.code\n\nimport android.content.res.Configuration.UI_MODE_NIGHT_YES\nimport android.os.Bundle\nimport androidx.activity.ComponentActivity\nimport androidx.activity.compose.setContent\nimport androidx.compose.animation.core.Spring\nimport androidx.compose.animation.core.animateDpAsState\nimport androidx.compose.animation.core.spring\nimport androidx.compose.foundation.layout.Arrangement\nimport androidx.compose.foundation.layout.Column\nimport androidx.compose.foundation.layout.Row\nimport androidx.compose.foundation.layout.fillMaxSize\nimport androidx.compose.foundation.layout.fillMaxWidth\nimport androidx.compose.foundation.layout.padding\nimport androidx.compose.foundation.lazy.LazyColumn\nimport androidx.compose.foundation.lazy.items\nimport androidx.compose.material3.Button\nimport androidx.compose.material3.ElevatedButton\nimport androidx.compose.material3.MaterialTheme\nimport androidx.compose.material3.Surface\nimport androidx.compose.material3.Text\nimport androidx.compose.runtime.Composable\nimport androidx.compose.runtime.getValue\nimport androidx.compose.runtime.mutableStateOf\nimport androidx.compose.runtime.remember\nimport androidx.compose.runtime.saveable.rememberSaveable\nimport androidx.compose.runtime.setValue\nimport androidx.compose.ui.Alignment\nimport androidx.compose.ui.Modifier\nimport androidx.compose.ui.text.font.FontWeight\nimport androidx.compose.ui.tooling.preview.Preview\nimport androidx.compose.ui.unit.dp\nimport source.kotlin.code.ui.theme.BasicsTheme\n\nclass MainActivity : ComponentActivity() {\n    override fun onCreate(savedInstanceState: Bundle?) {\n        super.onCreate(savedInstanceState)\n        setContent {\n            BasicsTheme {\n                // A surface container using the 'background' color from the theme\n                Surface(\n                    modifier = Modifier.fillMaxSize(),\n                    color = MaterialTheme.colorScheme.background\n                ) {\n                    MyApp()\n                }\n            }\n        }\n    }\n}\n\n@Composable\nprivate fun MyApp(\n    modifier: Modifier = Modifier,\n) {\n    var shouldShowOnboarding by rememberSaveable { mutableStateOf(true) }\n\n    Surface(modifier) {\n        if (shouldShowOnboarding) {\n            OnboardingScreen(\n                onContinueClicked = {\n                    shouldShowOnboarding = false\n                }\n            )\n        } else {\n            Greetings()\n        }\n    }\n}\n\n@Composable\nfun OnboardingScreen(\n    onContinueClicked: () -> Unit,\n    modifier: Modifier = Modifier,\n) {\n    Column(\n        modifier = modifier.fillMaxWidth(),\n        verticalArrangement = Arrangement.Center,\n        horizontalAlignment = Alignment.CenterHorizontally\n    ) {\n        Text(\n            text = \"Welcome to the Basics Codelab!\",\n        )\n\n        Button(\n            modifier = Modifier.padding(vertical = 24.dp),\n            onClick = onContinueClicked\n        ) {\n            Text(text = \"Continue\")\n        }\n    }\n}\n\n@Composable\nprivate fun Greetings(\n    modifier: Modifier = Modifier,\n    names: List<String> = List(1000) { \"$it\" }\n) {\n    LazyColumn(modifier = modifier.padding(vertical = 4.dp)) {\n        items(items = names) { name ->\n            Greeting(name = name)\n        }\n    }\n}\n\n@Preview(showBackground = true, widthDp = 320, heightDp = 320)\n@Composable\nfun OnboardingPreview() {\n    BasicsTheme {\n        OnboardingScreen(onContinueClicked = { })\n    }\n}\n\n@Composable\nprivate fun Greeting(name: String) {\n    val expanded = remember { mutableStateOf(false) }\n    val extraPadding by animateDpAsState(\n        if (expanded.value) 48.dp else 0.dp, label = \"\",\n        animationSpec = spring(\n            dampingRatio = Spring.DampingRatioMediumBouncy,\n            stiffness = Spring.StiffnessLow\n        )\n    )\n\n    Surface(\n        color = MaterialTheme.colorScheme.primary,\n        modifier = Modifier.padding(vertical = 4.dp, horizontal = 8.dp)\n    ) {\n        Row(modifier = Modifier.padding(vertical = 8.dp, horizontal = 12.dp)) {\n            Column(\n                modifier = Modifier\n                    .weight(1f)\n                    .padding(bottom = extraPadding.coerceAtLeast(0.dp))\n            ) {\n                Text(text = \"hello\")\n                Text(text = name, style = MaterialTheme.typography.headlineMedium.copy(\n                    fontWeight = FontWeight.ExtraBold\n                ))\n            }\n\n            ElevatedButton(onClick = {\n                expanded.value = !expanded.value\n            }) {\n                Text(if (expanded.value) \"show less\" else \"show more\")\n            }\n        }\n    }\n}\n\n@Preview(\n    showBackground = true,\n    widthDp = 320,\n    uiMode = UI_MODE_NIGHT_YES,\n    name = \"Dark\"\n)\n@Preview(showBackground = true, widthDp = 320)\n@Composable\nprivate fun DefaultPreview() {\n    BasicsTheme {\n        Greetings()\n    }\n}\n\n@Preview\n@Composable\nfun MyAppPreview() {\n    BasicsTheme {\n        MyApp(Modifier.fillMaxSize())\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/source/kotlin/code/MainActivity.kt b/app/src/main/java/source/kotlin/code/MainActivity.kt
+--- a/app/src/main/java/source/kotlin/code/MainActivity.kt	(revision 37dfba584fba6e1414261263dbcf5333b3f4db0c)
++++ b/app/src/main/java/source/kotlin/code/MainActivity.kt	(date 1680114886217)
+@@ -43,129 +43,11 @@
+                     modifier = Modifier.fillMaxSize(),
+                     color = MaterialTheme.colorScheme.background
+                 ) {
+-                    MyApp()
+-                }
+-            }
+-        }
+-    }
+-}
+-
+-@Composable
+-private fun MyApp(
+-    modifier: Modifier = Modifier,
+-) {
+-    var shouldShowOnboarding by rememberSaveable { mutableStateOf(true) }
+ 
+-    Surface(modifier) {
+-        if (shouldShowOnboarding) {
+-            OnboardingScreen(
+-                onContinueClicked = {
+-                    shouldShowOnboarding = false
+                 }
+-            )
+-        } else {
+-            Greetings()
+-        }
+-    }
+-}
+-
+-@Composable
+-fun OnboardingScreen(
+-    onContinueClicked: () -> Unit,
+-    modifier: Modifier = Modifier,
+-) {
+-    Column(
+-        modifier = modifier.fillMaxWidth(),
+-        verticalArrangement = Arrangement.Center,
+-        horizontalAlignment = Alignment.CenterHorizontally
+-    ) {
+-        Text(
+-            text = "Welcome to the Basics Codelab!",
+-        )
+-
+-        Button(
+-            modifier = Modifier.padding(vertical = 24.dp),
+-            onClick = onContinueClicked
+-        ) {
+-            Text(text = "Continue")
++            }
+         }
+     }
+ }
+ 
+-@Composable
+-private fun Greetings(
+-    modifier: Modifier = Modifier,
+-    names: List<String> = List(1000) { "$it" }
+-) {
+-    LazyColumn(modifier = modifier.padding(vertical = 4.dp)) {
+-        items(items = names) { name ->
+-            Greeting(name = name)
+-        }
+-    }
+-}
+ 
+-@Preview(showBackground = true, widthDp = 320, heightDp = 320)
+-@Composable
+-fun OnboardingPreview() {
+-    BasicsTheme {
+-        OnboardingScreen(onContinueClicked = { })
+-    }
+-}
+-
+-@Composable
+-private fun Greeting(name: String) {
+-    val expanded = remember { mutableStateOf(false) }
+-    val extraPadding by animateDpAsState(
+-        if (expanded.value) 48.dp else 0.dp, label = "",
+-        animationSpec = spring(
+-            dampingRatio = Spring.DampingRatioMediumBouncy,
+-            stiffness = Spring.StiffnessLow
+-        )
+-    )
+-
+-    Surface(
+-        color = MaterialTheme.colorScheme.primary,
+-        modifier = Modifier.padding(vertical = 4.dp, horizontal = 8.dp)
+-    ) {
+-        Row(modifier = Modifier.padding(vertical = 8.dp, horizontal = 12.dp)) {
+-            Column(
+-                modifier = Modifier
+-                    .weight(1f)
+-                    .padding(bottom = extraPadding.coerceAtLeast(0.dp))
+-            ) {
+-                Text(text = "hello")
+-                Text(text = name, style = MaterialTheme.typography.headlineMedium.copy(
+-                    fontWeight = FontWeight.ExtraBold
+-                ))
+-            }
+-
+-            ElevatedButton(onClick = {
+-                expanded.value = !expanded.value
+-            }) {
+-                Text(if (expanded.value) "show less" else "show more")
+-            }
+-        }
+-    }
+-}
+-
+-@Preview(
+-    showBackground = true,
+-    widthDp = 320,
+-    uiMode = UI_MODE_NIGHT_YES,
+-    name = "Dark"
+-)
+-@Preview(showBackground = true, widthDp = 320)
+-@Composable
+-private fun DefaultPreview() {
+-    BasicsTheme {
+-        Greetings()
+-    }
+-}
+-
+-@Preview
+-@Composable
+-fun MyAppPreview() {
+-    BasicsTheme {
+-        MyApp(Modifier.fillMaxSize())
+-    }
+-}
+Index: app/src/main/res/values/strings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><resources>\n    <string name=\"app_name\">MoviesAndTelevision</string>\n    <string name=\"title_activity_list_item\">ListItemActivity</string>\n    <string name=\"title_activity_onboarding\">OnboardingActivity</string>\n</resources>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/values/strings.xml b/app/src/main/res/values/strings.xml
+--- a/app/src/main/res/values/strings.xml	(revision 37dfba584fba6e1414261263dbcf5333b3f4db0c)
++++ b/app/src/main/res/values/strings.xml	(date 1680114673433)
+@@ -2,4 +2,5 @@
+     <string name="app_name">MoviesAndTelevision</string>
+     <string name="title_activity_list_item">ListItemActivity</string>
+     <string name="title_activity_onboarding">OnboardingActivity</string>
++    <string name="title_activity_compose_basics">ComposeBasicsActivity</string>
+ </resources>
+\ No newline at end of file
+Index: app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<manifest\n    xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:tools=\"http://schemas.android.com/tools\">\n\n    <application\n        android:allowBackup=\"true\"\n        android:dataExtractionRules=\"@xml/data_extraction_rules\"\n        android:fullBackupContent=\"@xml/backup_rules\"\n        android:icon=\"@mipmap/ic_launcher\"\n        android:label=\"@string/app_name\"\n        android:roundIcon=\"@mipmap/ic_launcher_round\"\n        android:supportsRtl=\"true\"\n        android:theme=\"@style/Theme.MoviesAndTelevision\"\n        tools:targetApi=\"31\">\n        <activity\n            android:name=\".practice.ListItemActivity\"\n            android:exported=\"false\"\n            android:label=\"@string/title_activity_list_item\"\n            android:theme=\"@style/Theme.MoviesAndTelevision\" />\n        <activity\n            android:name=\".MainActivity\"\n            android:exported=\"true\"\n            android:label=\"@string/app_name\"\n            android:theme=\"@style/Theme.MoviesAndTelevision\">\n            <intent-filter>\n                <action android:name=\"android.intent.action.MAIN\" />\n\n                <category android:name=\"android.intent.category.LAUNCHER\" />\n            </intent-filter>\n        </activity>\n    </application>\n\n</manifest>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/AndroidManifest.xml b/app/src/main/AndroidManifest.xml
+--- a/app/src/main/AndroidManifest.xml	(revision 37dfba584fba6e1414261263dbcf5333b3f4db0c)
++++ b/app/src/main/AndroidManifest.xml	(date 1680114673626)
+@@ -14,6 +14,11 @@
+         android:theme="@style/Theme.MoviesAndTelevision"
+         tools:targetApi="31">
+         <activity
++            android:name=".practice.ComposeBasicsActivity"
++            android:exported="false"
++            android:label="@string/title_activity_compose_basics"
++            android:theme="@style/Theme.MoviesAndTelevision" />
++        <activity
+             android:name=".practice.ListItemActivity"
+             android:exported="false"
+             android:label="@string/title_activity_list_item"
+Index: app/build.gradle.kts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import com.android.build.api.dsl.Packaging\n\nplugins {\n    alias(libs.plugins.com.android.application)\n    alias(libs.plugins.org.jetbrains.kotlin.android)\n}\n\nandroid {\n    namespace = \"source.kotlin.code\"\n    compileSdk = 33\n\n    defaultConfig {\n        applicationId = \"io.television.movies\"\n        minSdk = 25\n        targetSdk = 33\n        versionCode = 1\n        versionName = \"1.0\"\n\n        testInstrumentationRunner = \"androidx.test.runner.AndroidJUnitRunner\"\n        vectorDrawables {\n            useSupportLibrary = true\n        }\n    }\n\n    buildTypes {\n        release {\n            isMinifyEnabled = false\n            proguardFiles(\n                getDefaultProguardFile(\"proguard-android-optimize.txt\"),\n                \"proguard-rules.pro\"\n            )\n        }\n    }\n    compileOptions {\n        sourceCompatibility = JavaVersion.VERSION_1_8\n        targetCompatibility = JavaVersion.VERSION_1_8\n    }\n    kotlinOptions {\n        jvmTarget = \"1.8\"\n    }\n    buildFeatures {\n        compose = true\n    }\n    composeOptions {\n        kotlinCompilerExtensionVersion = \"1.3.2\"\n    }\n    packagingOptions {\n        resources {\n            excludes += \"/META-INF/{AL2.0,LGPL2.1}\"\n        }\n    }\n\n    fun Packaging.() {\n        resources {\n            excludes += \"/META-INF/{AL2.0,LGPL2.1}\"\n        }\n    }\n}\n\ndependencies {\n    implementation(libs.core.ktx)\n    implementation(libs.lifecycle.runtime.ktx)\n    implementation(libs.activity.compose)\n    implementation(platform(libs.compose.bom))\n    implementation(libs.ui)\n    implementation(libs.ui.graphics)\n    implementation(libs.ui.tooling.preview)\n    implementation(libs.material3)\n    implementation(platform(libs.compose.bom))\n    implementation(platform(libs.compose.bom))\n    testImplementation(libs.junit)\n    androidTestImplementation(libs.androidx.test.ext.junit)\n    androidTestImplementation(libs.espresso.core)\n    androidTestImplementation(platform(libs.compose.bom))\n    androidTestImplementation(libs.ui.test.junit4)\n    androidTestImplementation(platform(libs.compose.bom))\n    androidTestImplementation(platform(libs.compose.bom))\n    debugImplementation(libs.ui.tooling)\n    debugImplementation(libs.ui.test.manifest)\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/build.gradle.kts b/app/build.gradle.kts
+--- a/app/build.gradle.kts	(revision 37dfba584fba6e1414261263dbcf5333b3f4db0c)
++++ b/app/build.gradle.kts	(date 1680114673545)
+@@ -68,11 +68,13 @@
+     implementation(libs.material3)
+     implementation(platform(libs.compose.bom))
+     implementation(platform(libs.compose.bom))
++    implementation(platform(libs.compose.bom))
+     testImplementation(libs.junit)
+     androidTestImplementation(libs.androidx.test.ext.junit)
+     androidTestImplementation(libs.espresso.core)
+     androidTestImplementation(platform(libs.compose.bom))
+     androidTestImplementation(libs.ui.test.junit4)
++    androidTestImplementation(platform(libs.compose.bom))
+     androidTestImplementation(platform(libs.compose.bom))
+     androidTestImplementation(platform(libs.compose.bom))
+     debugImplementation(libs.ui.tooling)
