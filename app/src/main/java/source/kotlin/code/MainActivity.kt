@@ -6,18 +6,29 @@ import androidx.activity.compose.setContent
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.paddingFromBaseline
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.GridItemSpan
+import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
+import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
@@ -29,6 +40,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import source.kotlin.code.fake.AlignYourBodyData
 import source.kotlin.code.ui.theme.BasicsTheme
 
 class MainActivity : ComponentActivity() {
@@ -36,13 +48,17 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             BasicsTheme {
-                AlignYourBodyElement(
-                    drawable = R.drawable.img_profile_picture,
-                    text = R.string.app_name,
-                    modifier = Modifier.padding(8.dp)
-                )
+                AlignYourBodyRow()
             }
         }
+    }
+}
+
+@Preview
+@Composable
+fun DefaultPreview() {
+    BasicsTheme {
+        FavoriteCollectionsGrid(Modifier)
     }
 }
 
@@ -97,17 +113,63 @@ fun AlignYourBodyElement(
     }
 }
 
-@Preview
 @Composable
-fun DefaultPreview() {
-    BasicsTheme {
-        AlignYourBodyElement(
-            drawable = R.drawable.img_profile_picture,
-            text = R.string.app_name,
-            modifier = Modifier.padding(8.dp)
-        )
+fun AlignYourBodyRow(
+    modifier: Modifier = Modifier
+) {
+    LazyRow(
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        contentPadding = PaddingValues(horizontal = 16.dp, vertical = 6.dp),
+        modifier = modifier,
+    ) {
+        items(AlignYourBodyData.alignYourBodyData()) {
+            AlignYourBodyElement(drawable = it.drawable, text = it.text)
+        }
     }
 }
 
+@Composable
+fun FavoriteCollectionsGrid(
+    modifier: Modifier
+) {
+    LazyHorizontalGrid(
+        rows = GridCells.Fixed(2),
+        modifier = modifier
+    ) {
+        items(AlignYourBodyData.alignYourBodyData()) {
+            FavoriteCollectCard(
+                drawable = it.drawable,
+                text = it.text
+            )
+        }
+    }
+}
 
-
+@Composable
+fun FavoriteCollectCard(
+    @DrawableRes drawable: Int,
+    @StringRes text: Int,
+    modifier: Modifier = Modifier
+) {
+    Surface(
+        shape = MaterialTheme.shapes.small,
+        modifier = modifier
+    ) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier.width(192.dp)
+        ) {
+            Image(
+                painter = painterResource(drawable),
+                contentDescription = null,
+                contentScale = ContentScale.Crop,
+                modifier = Modifier.size(56.dp)
+            )
+            Text(
+                text = stringResource(text),
+                style = MaterialTheme.typography.bodyMedium,
+                modifier = Modifier.padding(horizontal = 16.dp)
+            )
+        }
+    }
+}
