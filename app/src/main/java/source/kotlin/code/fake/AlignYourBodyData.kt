@@ -36,6 +36,36 @@ class AlignYourBodyData {
                 R.drawable.img_profile_picture,
                 R.string.app_name
             ),
+
+            AlignYouBody(
+                R.drawable.img_profile_picture,
+                R.string.app_name
+            ),
+
+            AlignYouBody(
+                R.drawable.img_profile_picture,
+                R.string.app_name
+            ),
+
+            AlignYouBody(
+                R.drawable.img_profile_picture,
+                R.string.app_name
+            ),
+
+            AlignYouBody(
+                R.drawable.img_profile_picture,
+                R.string.app_name
+            ),
+
+            AlignYouBody(
+                R.drawable.img_profile_picture,
+                R.string.app_name
+            ),
+
+            AlignYouBody(
+                R.drawable.img_profile_picture,
+                R.string.app_name
+            ),
         )
     }
 }
