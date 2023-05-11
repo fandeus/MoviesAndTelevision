@@ -6,4 +6,6 @@
     <string name="title_activity_compose_basics">ComposeBasicsActivity</string>
     <string name="show_more">Show more</string>
     <string name="placeholder_search">Search</string>
+    <string name="align_your_body">Align your body</string>
+    <string name="favorite_collections">Favorite collections</string>
 </resources>
