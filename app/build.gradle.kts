@@ -3,6 +3,8 @@ import com.android.build.api.dsl.Packaging
 plugins {
     alias(libs.plugins.com.android.application)
     alias(libs.plugins.org.jetbrains.kotlin.android)
+    alias(libs.plugins.gms.google.services)
+    alias(libs.plugins.com.google.firebase.crashlytics)
 }
 
 android {
@@ -46,7 +48,7 @@ android {
     }
     
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.3.2"
+        kotlinCompilerExtensionVersion = "1.4.3"
     }
 
     fun Packaging.() {
@@ -74,6 +76,8 @@ dependencies {
     implementation(platform(libs.compose.bom))
     implementation(platform(libs.compose.bom))
     implementation(platform(libs.compose.bom))
+    implementation(libs.firebase.crashlytics)
+    implementation(libs.firebase.analytics)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)

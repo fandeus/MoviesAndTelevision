@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "858740767345",
+    "project_id": "moviesandtelevision-e6531",
+    "storage_bucket": "moviesandtelevision-e6531.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:858740767345:android:f10451e78f62316c3539d0",
+        "android_client_info": {
+          "package_name": "io.television.movies"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "858740767345-3ajsac6vv1bu60qlslfra595oi5elj1b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDfH1LGxrvBQjBByQzH5iitKBGoy-6w3jc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "858740767345-3ajsac6vv1bu60qlslfra595oi5elj1b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
