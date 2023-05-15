@@ -27,6 +27,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -62,6 +63,13 @@ class MainActivity : ComponentActivity() {
 fun DefaultPreview() {
     BasicsTheme {
         HomeScreen()
+    }
+}
+
+@Composable
+fun SootheBottomNavigation(modifier: Modifier = Modifier){
+    BottomAppBar(modifier) {
+
     }
 }
 
