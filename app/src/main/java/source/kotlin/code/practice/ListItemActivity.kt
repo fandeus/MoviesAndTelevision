@@ -18,9 +18,9 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -44,7 +44,7 @@ class ListItemActivity : ComponentActivity() {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
+                    color = MaterialTheme.colors.background
                 ) {
                     Conversation(SampleData.conversationSample())
                 }
@@ -73,7 +73,7 @@ fun MessageCard(msg: Message, modifier: Modifier = Modifier) {
             modifier = Modifier
                 .size(50.dp)
                 .clip(CircleShape)
-                .border(1.5.dp, MaterialTheme.colorScheme.onSecondary, CircleShape),
+                .border(1.5.dp, MaterialTheme.colors.onSecondary, CircleShape),
             contentScale = ContentScale.Crop
         )
 
@@ -88,14 +88,14 @@ fun MessageCard(msg: Message, modifier: Modifier = Modifier) {
             Text(
                 text = "Hello ${msg.author}!",
                 modifier = modifier,
-                style = MaterialTheme.typography.titleMedium
+                style = MaterialTheme.typography.h1
             )
             Spacer(modifier = Modifier.width(8.dp))
 
             Surface(
                 shape = MaterialTheme.shapes.medium,
-                shadowElevation = 1.dp,
-                color = MaterialTheme.colorScheme.primary,
+                elevation = 1.dp,
+                color = MaterialTheme.colors.primary,
                 modifier = Modifier
                     .animateContentSize()
                     .padding(1.dp)
@@ -103,7 +103,7 @@ fun MessageCard(msg: Message, modifier: Modifier = Modifier) {
                 Text(
                     text = msg.body,
                     modifier = Modifier.padding(all = 12.dp),
-                    style = MaterialTheme.typography.bodyMedium,
+                    style = MaterialTheme.typography.body1,
                     maxLines = if (isExpanded) Int.MAX_VALUE else 2
                 )
             }

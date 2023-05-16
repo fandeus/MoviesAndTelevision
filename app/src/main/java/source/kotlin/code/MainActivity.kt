@@ -25,15 +25,15 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.BottomNavigation
+import androidx.compose.material.BottomNavigationItem
+import androidx.compose.material.Icon
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
+import androidx.compose.material.Text
+import androidx.compose.material.TextField
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
-import androidx.compose.material3.BottomAppBar
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -67,9 +67,11 @@ fun DefaultPreview() {
 }
 
 @Composable
-fun SootheBottomNavigation(modifier: Modifier = Modifier){
-    BottomAppBar(modifier) {
-
+fun SootheBottomNavigation(modifier: Modifier = Modifier) {
+    BottomNavigation(modifier) {
+        BottomNavigationItem(
+            selected = true,
+            onClick = { }, icon = { /*TODO*/ })
     }
 }
 
@@ -82,7 +84,7 @@ fun HomeSection(
     Column(modifier) {
         Text(
             text = stringResource(title).uppercase(Locale.getDefault()),
-            style = MaterialTheme.typography.titleLarge,
+            style = MaterialTheme.typography.h6,
             modifier = Modifier
                 .paddingFromBaseline(top = 40.dp, bottom = 8.dp)
                 .padding(horizontal = 16.dp)
@@ -111,7 +113,6 @@ fun HomeScreen(modifier: Modifier = Modifier) {
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SearchBar(
     modifier: Modifier = Modifier
@@ -154,7 +155,7 @@ fun AlignYourBodyElement(
 
         Text(
             text = stringResource(text),
-            style = MaterialTheme.typography.bodyMedium,
+            style = MaterialTheme.typography.h5,
             modifier = Modifier.paddingFromBaseline(
                 top = 24.dp, bottom = 8.dp
             )
@@ -220,7 +221,7 @@ fun FavoriteCollectCard(
             )
             Text(
                 text = stringResource(text),
-                style = MaterialTheme.typography.bodyMedium,
+                style = MaterialTheme.typography.h6,
                 modifier = Modifier.padding(horizontal = 16.dp)
             )
         }
